@@ -20,14 +20,14 @@ app.use(express.static("public"));
 
 //heroku connection w mongoose
 const MONGODB_URI = process.env.MONGODB_URL || "mongodb://localhost/workouts";
-const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  family: 4 // Use IPv4, skip trying IPv6
-};
+// const options = {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false,
+//   family: 4 // Use IPv4, skip trying IPv6
+// };
 
-mongoose.connect(MONGODB_URI, options)
+mongoose.connect(MONGODB_URI);
 
 require("./routes/api-routes")(app);
 require("./routes/html-routes")(app);
