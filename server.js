@@ -2,27 +2,22 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
+
 app.use(logger("dev"));
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
 app.use(express.static("public"));
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
-//     useNewUrlParser: true
-// });
+
 //heroku connection w mongoose
 const MONGODB_URL = process.env.MONGODB_URI || "mongodb://localhost/workouts";
-// const options = {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useFindAndModify: false,
-//   family: 4 // Use IPv4, skip trying IPv6
-// };
 mongoose.connect(MONGODB_URL);
 
-app.use(require("/routes/apiRoutes.js"));
-app.use(require("/routes/htmlRoutes.js"));
+app.use(apiRoutes);
+app.use(htmlRoutes);
 
 
 // Listen on port 3000
