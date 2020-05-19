@@ -21,8 +21,8 @@ const MONGODB_URL = process.env.MONGODB_URI || "mongodb://localhost/workouts";
 // };
 mongoose.connect(MONGODB_URL);
 
-app.use(require("./routes/apiRoutes.js"));
-app.use(require("./routes/htmlRoutes.js"));
+app.use(require("/routes/apiRoutes.js"));
+app.use(require("/routes/htmlRoutes.js"));
 
 
 // Listen on port 3000
