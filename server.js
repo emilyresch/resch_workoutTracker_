@@ -20,8 +20,11 @@ const MONGODB_URL = process.env.MONGODB_URI || "mongodb://localhost/workouts";
 //   family: 4 // Use IPv4, skip trying IPv6
 // };
 mongoose.connect(MONGODB_URL);
-require("./routes/api-routes")(app);
-require("./routes/html-routes")(app);
+
+app.use(require("./routes/api-routes"));
+app.use(require("./routes/html-routes"));
+
+
 // Listen on port 3000
 app.listen(3000, () => {
     console.log("App running on port 3000!");

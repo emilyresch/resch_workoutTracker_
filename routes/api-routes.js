@@ -1,10 +1,11 @@
 //pseudo code 
 //exercises are documents and workout plans are collections
 //require models
-const Workout = require("../models").Workout; 
-module.exports = function (app) {
+const Workout = require("../models/workout"); 
+const router = require("express").Router();
 
-app.get("/api/workouts", (req, res) => {
+
+router.get("/api/workouts", (req, res) => {
     Workout.find({})
         .then(dbWorkout => {
             // console.log(dbWorkout);
@@ -16,7 +17,7 @@ app.get("/api/workouts", (req, res) => {
 });
 
 // * Add new exercises to a new workout plan.
-app.post("/api/workouts", ({body}, res) => {
+router.post("/api/workouts", ({body}, res) => {
     // console.log("second post request")
     Workout.create(body)
         .then(dbWorkout => {
@@ -30,7 +31,7 @@ app.post("/api/workouts", ({body}, res) => {
 
 // * Add exercises to a previous workout plan.
 //update route to add exercises to a previously made workout collection
-app.put("/api/workouts/:id", (req, res) => {
+router.put("/api/workouts/:id", (req, res) => {
     console.log("got a PUT request");
     //find by id and push new excercise from the body into the document
     Workout.findByIdAndUpdate({
@@ -50,7 +51,7 @@ app.put("/api/workouts/:id", (req, res) => {
 });
 
 // * View multiple the combined weight of multiple exercises on the `stats` page.
-app.get("/api/workouts/range", (req, res) => {
+router.get("/api/workouts/range", (req, res) => {
     console.log("get request for stats page");
     Workout.find({})
         .then(dbRange => {
@@ -60,4 +61,3 @@ app.get("/api/workouts/range", (req, res) => {
 });
 
 
-}
