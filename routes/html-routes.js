@@ -3,7 +3,7 @@ var path = require("path");
 module.exports = function (app) {
     app.get("/", (req, res) => {
         console.log("get request for homepage")
-        res.sendFile(path.join(__dirname, "/public/index.html"));
+        res.sendFile(path.join(__dirname, "/index.html"));
     });
 
     app.get("/stats", (req, res) => {
