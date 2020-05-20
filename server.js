@@ -21,6 +21,6 @@ app.use(apiRoutes);
 app.use(htmlRoutes);
 
 //listening on port 3000
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("App running on port" + PORT);
 });
