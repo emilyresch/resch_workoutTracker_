@@ -4,6 +4,7 @@ const mongoose =require("mongoose");
 const app = express();
 const apiRoutes = require("./routes/apiRoutes");
 const htmlRoutes = require("./routes/htmlRoutes");
+const PORT = process.env.PORT || 3000
 
 app.use(logger("dev"));
 app.use(express.urlencoded({
@@ -21,5 +22,5 @@ app.use(htmlRoutes);
 
 //listening on port 3000
 app.listen(3000, () => {
-    console.log("App running on port 3000");
+    console.log("App running on port" + PORT);
 });

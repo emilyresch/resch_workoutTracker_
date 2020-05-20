@@ -34,13 +34,7 @@ router.post("/api/workouts", ({body}, res) => {
 router.put("/api/workouts/:id", (req, res) => {
     console.log("got a PUT request");
     //find by id and push new excercise from the body into the document
-    Workout.findByIdAndUpdate({
-            _id: req.params.id
-        }, {
-            $push: {
-                exercises: req.body
-            }
-        })
+    Workout.findByIdAndUpdate(req.params.id, {$push: {exercises: req.body}}, {new: true})
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
